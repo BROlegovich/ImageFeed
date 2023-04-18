@@ -53,7 +53,6 @@ final class ProfileViewController: UIViewController {
             logoutButton.heightAnchor.constraint(equalToConstant: 24),
             logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:  -16),
-            //loginLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.trailingAnchor)
         ])
         
     }
