@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P3H-uS-hPX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -85,6 +85,7 @@
                             <constraint firstAttribute="trailing" secondItem="HFM-Ae-raM" secondAttribute="trailing" id="yFO-NI-zeV"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Izh-A8-JB0"/>
                     <navigationItem key="navigationItem" id="jJ9-TZ-Bd7"/>
                     <connections>
                         <outlet property="tableView" destination="HFM-Ae-raM" id="XpS-he-PlI"/>
@@ -93,7 +94,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799.23664122137404" y="-715.49295774647896"/>
+            <point key="canvasLocation" x="-127" y="-689"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qvk-if-24d">
@@ -109,8 +110,8 @@
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="xdT-Ha-Qjv" kind="relationship" relationship="viewControllers" id="nEp-6N-PTL"/>
                         <segue destination="2rx-17-pAr" kind="relationship" relationship="viewControllers" id="rIv-H6-msz"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ehS-KL-Myq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VhP-nI-suB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -133,30 +134,6 @@
             </objects>
             <point key="canvasLocation" x="-126" y="29"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7cj-r7-6J0">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xdT-Ha-Qjv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="Qrl-wK-nUX"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tuk-BI-Huq">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" name="YPWhite"/>
-                        <color key="barTintColor" name="YPWhite"/>
-                        <navigationBarAppearance key="standardAppearance">
-                            <color key="backgroundColor" name="YPBlack"/>
-                        </navigationBarAppearance>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="437-WK-fcc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wBx-V4-0na" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-127.48091603053435" y="-715.49295774647896"/>
-        </scene>
         <!--Single Image View Controller-->
         <scene sceneID="dCa-3h-zoR">
             <objects>
@@ -168,8 +145,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnc-QK-6ZT">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="414" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="bbl-49-ZZq">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="bbl-49-ZZq">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="132"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -181,7 +158,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="O4G-wR-GfR"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="OMV-1S-ntV"/>
                                 <connections>
-                                    <outlet property="delegate" destination="l0Q-1Z-9yu" id="2Lh-s3-Nb6"/>
+                                    <outlet property="delegate" destination="l0Q-1Z-9yu" id="h8r-Rg-QdQ"/>
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lfq-6B-283">
@@ -226,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1g-Vr-D7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1736.6412213740457" y="-715.49295774647896"/>
+            <point key="canvasLocation" x="887.78625954198469" y="-689.43661971830988"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="g6S-6x-ckW">
@@ -308,7 +285,6 @@
         <image name="Sharing" width="50" height="50"/>
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="likeButtonOn" width="42" height="42"/>
-        <image name="tab_editorial_active" width="31" height="30"/>
         <image name="tab_profile_active" width="31" height="30"/>
         <namedColor name="YPBlack">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
