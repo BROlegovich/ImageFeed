@@ -1,14 +1,29 @@
-//
-//  AuthViewController.swift
-//  ImageFeed
-//
-//  Created by Роман on 11.05.2023.
-//
 
 import UIKit
 
 class AuthViewController: UIViewController {
     
-    let showWebViewSegue = "ShowWebView"
+    private let ShowWebViewSegueIdentifier = "ShowWebView"
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ShowWebViewSegueIdentifier {
+            guard
+                let webViewViewController = segue.destination as? WebViewViewController
+            else { fatalError("Failed to prepare for \(ShowWebViewSegueIdentifier)")}
+            webViewViewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+}
+
+extension AuthViewController: WebViewViewControllerDelegate {
+    
+    func ViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
+        //TODO: process code
+    }
+    
+    func ViewViewControllerDidCancel(_ vc: WebViewViewController) {
+        dismiss(animated: true)
+    }
 }
