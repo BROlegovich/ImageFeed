@@ -17,6 +17,7 @@ final class WebViewViewController: UIViewController {
     }
     
     @IBAction private func didTapBackButton(_ sender: Any?) {
+        delegate?.ViewViewControllerDidCancel(self)
     }
     
     override func viewDidLoad() {

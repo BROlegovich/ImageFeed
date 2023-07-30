@@ -12,6 +12,9 @@
 		306DF2E229B57C5B00A15BE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF2E129B57C5B00A15BE3 /* ProfileViewController.swift */; };
 		306E5B8129EC33380096E11F /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306E5B8029EC33380096E11F /* ColorExtensions.swift */; };
 		30734B772A696F22006EDEF9 /* WebViewViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734B762A696F22006EDEF9 /* WebViewViewControllerDelegate.swift */; };
+		30734B802A6CE231006EDEF9 /* OAuth2Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734B7F2A6CE231006EDEF9 /* OAuth2Service.swift */; };
+		30734B842A76B27C006EDEF9 /* AuthViewControllerDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734B832A76B27C006EDEF9 /* AuthViewControllerDelegateProtocol.swift */; };
+		30734B862A76B352006EDEF9 /* Oauth2TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30734B852A76B352006EDEF9 /* Oauth2TokenStorage.swift */; };
 		30774CCC29872C6C0021E645 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30774CCB29872C6C0021E645 /* AppDelegate.swift */; };
 		30774CCE29872C6C0021E645 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30774CCD29872C6C0021E645 /* SceneDelegate.swift */; };
 		30774CD029872C6C0021E645 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30774CCF29872C6C0021E645 /* ImagesListViewController.swift */; };
@@ -29,6 +32,9 @@
 		306DF2E129B57C5B00A15BE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		306E5B8029EC33380096E11F /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		30734B762A696F22006EDEF9 /* WebViewViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewControllerDelegate.swift; sourceTree = "<group>"; };
+		30734B7F2A6CE231006EDEF9 /* OAuth2Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2Service.swift; sourceTree = "<group>"; };
+		30734B832A76B27C006EDEF9 /* AuthViewControllerDelegateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewControllerDelegateProtocol.swift; sourceTree = "<group>"; };
+		30734B852A76B352006EDEF9 /* Oauth2TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oauth2TokenStorage.swift; sourceTree = "<group>"; };
 		30774CC829872C6C0021E645 /* ImageFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30774CCB29872C6C0021E645 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30774CCD29872C6C0021E645 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +69,22 @@
 			path = ImagesList;
 			sourceTree = "<group>";
 		};
+		30734B7A2A6CDE94006EDEF9 /* SingleImage */ = {
+			isa = PBXGroup;
+			children = (
+				302DF37A29D59910004827C6 /* SingleImageViewController.swift */,
+			);
+			path = SingleImage;
+			sourceTree = "<group>";
+		};
+		30734B7C2A6CDEC8006EDEF9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				306E5B8029EC33380096E11F /* ColorExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		30774CBF29872C6C0021E645 = {
 			isa = PBXGroup;
 			children = (
@@ -82,14 +104,14 @@
 		30774CCA29872C6C0021E645 /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				30734B7C2A6CDEC8006EDEF9 /* Extensions */,
+				30734B7A2A6CDE94006EDEF9 /* SingleImage */,
 				306DF2E029ACFF3B00A15BE3 /* ImagesList */,
 				30774CCB29872C6C0021E645 /* AppDelegate.swift */,
 				30774CCD29872C6C0021E645 /* SceneDelegate.swift */,
 				30FA1D202A0D8D9000BE27FF /* Auth */,
 				30774CD129872C6C0021E645 /* Main.storyboard */,
 				30FA1D1C2A06985700BE27FF /* Constants.swift */,
-				302DF37A29D59910004827C6 /* SingleImageViewController.swift */,
-				306E5B8029EC33380096E11F /* ColorExtensions.swift */,
 				30774CD429872C6D0021E645 /* Assets.xcassets */,
 				30774CD629872C6D0021E645 /* LaunchScreen.storyboard */,
 				30774CD929872C6D0021E645 /* Info.plist */,
@@ -100,9 +122,12 @@
 		30FA1D202A0D8D9000BE27FF /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				30734B7F2A6CE231006EDEF9 /* OAuth2Service.swift */,
 				30FA1D1E2A0D8D7000BE27FF /* AuthViewController.swift */,
 				30FA1D212A0D8E1500BE27FF /* WebViewViewController.swift */,
 				30734B762A696F22006EDEF9 /* WebViewViewControllerDelegate.swift */,
+				30734B832A76B27C006EDEF9 /* AuthViewControllerDelegateProtocol.swift */,
+				30734B852A76B352006EDEF9 /* Oauth2TokenStorage.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -180,6 +205,8 @@
 			files = (
 				30FA1D222A0D8E1500BE27FF /* WebViewViewController.swift in Sources */,
 				30774CD029872C6C0021E645 /* ImagesListViewController.swift in Sources */,
+				30734B862A76B352006EDEF9 /* Oauth2TokenStorage.swift in Sources */,
+				30734B802A6CE231006EDEF9 /* OAuth2Service.swift in Sources */,
 				306DF2DF29ACFE9500A15BE3 /* ImagesListCell.swift in Sources */,
 				306DF2E229B57C5B00A15BE3 /* ProfileViewController.swift in Sources */,
 				30774CCC29872C6C0021E645 /* AppDelegate.swift in Sources */,
@@ -187,6 +214,7 @@
 				30774CCE29872C6C0021E645 /* SceneDelegate.swift in Sources */,
 				30734B772A696F22006EDEF9 /* WebViewViewControllerDelegate.swift in Sources */,
 				306E5B8129EC33380096E11F /* ColorExtensions.swift in Sources */,
+				30734B842A76B27C006EDEF9 /* AuthViewControllerDelegateProtocol.swift in Sources */,
 				30FA1D1F2A0D8D7000BE27FF /* AuthViewController.swift in Sources */,
 				30FA1D1D2A06985700BE27FF /* Constants.swift in Sources */,
 			);
