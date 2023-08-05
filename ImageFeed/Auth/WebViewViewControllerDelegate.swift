@@ -1,8 +1,6 @@
 import UIKit
 
 protocol WebViewViewControllerDelegate: AnyObject {
-    
-    func ViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
-    
-    func ViewViewControllerDidCancel(_ vc: WebViewViewController)
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
+    func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }

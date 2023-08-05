@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X8z-Il-YSs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ki5-YC-Zb1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="1YT-Fx-6G5">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="ki5-YC-Zb1" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FU9-7O-Yap">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenVector" translatesAutoresizingMaskIntoConstraints="NO" id="Phu-ve-hpK">
+                                <rect key="frame" x="159" y="399.66666666666669" width="75" height="78"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ahe-DT-ocR"/>
+                        <color key="backgroundColor" name="YPBlack"/>
+                        <constraints>
+                            <constraint firstItem="Phu-ve-hpK" firstAttribute="centerX" secondItem="Ahe-DT-ocR" secondAttribute="centerX" id="9Jw-yY-Tdj"/>
+                            <constraint firstItem="Phu-ve-hpK" firstAttribute="centerY" secondItem="Ahe-DT-ocR" secondAttribute="centerY" id="OIj-SA-xVW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="P3H-uS-hPX" kind="presentation" identifier="ShowAuthenticationScreen" modalPresentationStyle="fullScreen" id="AIS-cu-1EH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FoT-g8-Xul" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2364" y="-357"/>
+        </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -100,7 +127,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="qvk-if-24d">
             <objects>
-                <tabBarController id="X8z-Il-YSs" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="X8z-Il-YSs" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5J1-J6-Aw3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -262,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bmj-QF-zi8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1814.5038167938931" y="28.87323943661972"/>
+            <point key="canvasLocation" x="799" y="831"/>
         </scene>
         <!--Web View View Controller-->
         <scene sceneID="ceC-aT-oU4">
@@ -314,13 +341,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEF-e4-HMd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2815" y="29"/>
+            <point key="canvasLocation" x="1799" y="831"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JSv-am-Gmr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P3H-uS-hPX" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="q2J-Ab-Twc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SNV-cI-E29">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -332,12 +360,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZf-xY-Qco" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887.78625954198469" y="28.87323943661972"/>
+            <point key="canvasLocation" x="-127" y="831"/>
         </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
         <image name="Backward" width="24" height="24"/>
+        <image name="LaunchScreenVector" width="75" height="78"/>
         <image name="Sharing" width="50" height="50"/>
         <image name="auth_screen_logo" width="60" height="60"/>
         <image name="likeButtonOn" width="42" height="42"/>

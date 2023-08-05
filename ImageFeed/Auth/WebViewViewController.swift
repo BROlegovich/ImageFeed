@@ -17,7 +17,7 @@ final class WebViewViewController: UIViewController {
     }
     
     @IBAction private func didTapBackButton(_ sender: Any?) {
-        delegate?.ViewViewControllerDidCancel(self)
+        delegate?.webViewViewControllerDidCancel(self)
     }
     
     override func viewDidLoad() {
@@ -53,7 +53,8 @@ final class WebViewViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
+        super.viewDidDisappear(animated)
+        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
 }
@@ -63,7 +64,7 @@ extension WebViewViewController: WKNavigationDelegate {
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let code = code(from: navigationAction) {
-            //TODO: process code
+            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
