@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="-689"/>
+            <point key="canvasLocation" x="-169" y="15"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qvk-if-24d">
@@ -138,8 +138,8 @@
                         </tabBarAppearance>
                     </tabBar>
                     <connections>
-                        <segue destination="2rx-17-pAr" kind="relationship" relationship="viewControllers" id="rIv-H6-msz"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ehS-KL-Myq"/>
+                        <segue destination="2rx-17-pAr" kind="relationship" relationship="viewControllers" id="rIv-H6-msz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VhP-nI-suB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjw-4L-OHH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-126" y="29"/>
+            <point key="canvasLocation" x="-170" y="-721"/>
         </scene>
         <!--Single Image View Controller-->
         <scene sceneID="dCa-3h-zoR">
@@ -231,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1g-Vr-D7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="887.78625954198469" y="-689.43661971830988"/>
+            <point key="canvasLocation" x="917" y="15"/>
         </scene>
         <!--Auth View Controller-->
         <scene sceneID="g6S-6x-ckW">

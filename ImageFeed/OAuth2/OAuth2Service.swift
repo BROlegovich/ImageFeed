@@ -4,14 +4,17 @@ import Foundation
 final class OAuth2Service {
     
     static let shared = OAuth2Service()
-    private let urlSession = URLSession.shared
     
+    private init() {}
+    
+    private let urlSession = URLSession.shared
+    private let tokenStorage = OAuth2TokenStorage.shared
     private (set) var authToken: String? {
         get {
-            return OAuth2TokenStorage().token
+            return tokenStorage.token
         }
         set {
-            OAuth2TokenStorage().token = newValue
+            tokenStorage.token = newValue
         }
     }
     
@@ -46,7 +49,7 @@ extension OAuth2Service {
         }
     }
     private func authTokenRequest(code: String) -> URLRequest {
-        URLRequest.makeHTTPRequest(
+    guard let request = URLRequest.makeHTTPRequest(
             path: "/oauth/token"
             + "?client_id=\(AccessKey)"
             + "&&client_secret=\(SecretKey)"
@@ -54,7 +57,11 @@ extension OAuth2Service {
             + "&&code=\(code)"
             + "&&grant_type=authorization_code",
             httpMethod: "POST",
-            baseURL: URL(string: "https://unsplash.com")!)
+            baseURL: URL(string: "https://unsplash.com")!) else {
+            assertionFailure("Failed to create URLRequest")
+        return URLRequest(url: URL(string: "https://unsplash.com")!)
+        }
+        return request
     }
     
     private struct OAuthTokenResponseBody: Decodable {
@@ -76,8 +83,11 @@ extension URLRequest {
         path: String,
         httpMethod: String,
         baseURL: URL = DefaultBaseURL
-    ) -> URLRequest {
-        var request = URLRequest(url: URL(string: path, relativeTo: baseURL)!)
+    ) -> URLRequest? {
+        guard let url = URL(string: path, relativeTo: baseURL) else {
+            return nil
+        }
+        var request = URLRequest(url: url)
         request.httpMethod = httpMethod
         return request
     }
