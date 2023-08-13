@@ -8,35 +8,31 @@ final class ProfileViewController: UIViewController {
         
         let profileImage = UIImage(named: "avatar")
         let imageView = UIImageView(image: profileImage)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(imageView)
-        
         
         let nameLabel = UILabel()
         nameLabel.text = "Екатерина Новикова"
         nameLabel.textColor = UIColor.ypWhite
         nameLabel.font = UIFont.systemFont(ofSize: 23, weight: .bold)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nameLabel)
         
         let loginLabel = UILabel()
         loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.ypGray
         loginLabel.font = UIFont.systemFont(ofSize: 13)
-        loginLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loginLabel)
         
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = UIColor.ypWhite
         descriptionLabel.font = UIFont.systemFont(ofSize: 13)
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(descriptionLabel)
         
         let logoutButton = UIButton.systemButton(with: UIImage(named: "logoutButton")!, target: self, action: #selector(clickLogoutButton(_:)))
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.tintColor = UIColor.ypRed
-        view.addSubview(logoutButton)
+        
+        var subviews = [imageView, nameLabel, loginLabel, descriptionLabel, logoutButton]
+        
+        for subview in subviews {
+            subview.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(subview)
+        }
         
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 70),
