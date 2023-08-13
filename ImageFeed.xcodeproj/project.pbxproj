@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		302DF37B29D59910004827C6 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302DF37A29D59910004827C6 /* SingleImageViewController.swift */; };
 		30415AC82A7E9E67000A975E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 30415AC72A7E9E67000A975E /* ProgressHUD */; };
+		30415ACA2A87F0FE000A975E /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30415AC92A87F0FE000A975E /* UIBlockingProgressHUD.swift */; };
 		306DF2DF29ACFE9500A15BE3 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF2DE29ACFE9500A15BE3 /* ImagesListCell.swift */; };
 		306DF2E229B57C5B00A15BE3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306DF2E129B57C5B00A15BE3 /* ProfileViewController.swift */; };
 		306E5B8129EC33380096E11F /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306E5B8029EC33380096E11F /* ColorExtensions.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		302DF37A29D59910004827C6 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
+		30415AC92A87F0FE000A975E /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		306DF2DE29ACFE9500A15BE3 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		306DF2E129B57C5B00A15BE3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		306E5B8029EC33380096E11F /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				30774CD429872C6D0021E645 /* Assets.xcassets */,
 				30774CD629872C6D0021E645 /* LaunchScreen.storyboard */,
 				30774CD929872C6D0021E645 /* Info.plist */,
+				30415AC92A87F0FE000A975E /* UIBlockingProgressHUD.swift */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				30FA1D222A0D8E1500BE27FF /* WebViewViewController.swift in Sources */,
 				30774CD029872C6C0021E645 /* ImagesListViewController.swift in Sources */,
 				30734B862A76B352006EDEF9 /* Oauth2TokenStorage.swift in Sources */,
+				30415ACA2A87F0FE000A975E /* UIBlockingProgressHUD.swift in Sources */,
 				30734B802A6CE231006EDEF9 /* OAuth2Service.swift in Sources */,
 				306DF2DF29ACFE9500A15BE3 /* ImagesListCell.swift in Sources */,
 				306DF2E229B57C5B00A15BE3 /* ProfileViewController.swift in Sources */,
