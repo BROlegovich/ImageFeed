@@ -18,6 +18,7 @@ class OAuth2TokenStorage {
             if let token = newValue {
                 keychainStorage.set(token, forKey: tokenKey)
             } else {
+                print("removing tokenKey")
                 keychainStorage.removeObject(forKey: tokenKey)
             }
         }
