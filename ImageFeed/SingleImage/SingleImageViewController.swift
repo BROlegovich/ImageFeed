@@ -4,10 +4,10 @@ import UIKit
 final class SingleImageViewController: UIViewController {
     var image: UIImage! {
         didSet {
-         guard isViewLoaded else { return }
-         imageView.image = image
+            guard isViewLoaded else { return }
+            imageView.image = image
             rescaleAndCenterImageInScrollView(image: image)
-         }
+        }
     }
     
     @IBOutlet weak var imageView: UIImageView!

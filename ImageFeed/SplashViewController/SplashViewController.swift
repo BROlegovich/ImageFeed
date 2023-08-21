@@ -71,7 +71,7 @@ class SplashViewController: UIViewController {
     
     private func showAuthController() {
         let viewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "AuthViewController")
-        guard let authViewController = viewController as? AuthViewController else {return}
+        guard let authViewController = viewController as? AuthViewController else { return }
         authViewController.delegate = self
         authViewController.modalPresentationStyle = .fullScreen
         present(authViewController, animated: true)
@@ -104,7 +104,7 @@ extension SplashViewController: AuthViewControllerDelegate {
     
     private func fetchProfile(completion: @escaping () -> Void) {
         profileService.fetchProfile() { [weak self] result in
-            guard let self = self else {return}
+            guard let self = self else { return }
             switch result{
             case .success(let userProfile):
                 self.profileImageService.fetchProfileImageURL(username: userProfile.username) { _ in }
