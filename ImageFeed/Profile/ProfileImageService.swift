@@ -41,7 +41,7 @@ final class ProfileImageService {
     func fetchProfileImageRequest(username: String) -> URLRequest? {
         builder.makeHTTPRequest(path: "/users/\(username)",
                                 httpMethod: "GET",
-                                baseURL: URL(string: "https://api.unsplash.com")!
+                                baseURL: DefaultBaseURL
         )
     }
 }

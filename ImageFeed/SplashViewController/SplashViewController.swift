@@ -1,7 +1,7 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
     
     private let profileImageService = ProfileImageService.shared
     private let profileService = ProfileService.shared
@@ -10,7 +10,7 @@ class SplashViewController: UIViewController {
     private let alertPresenter = AlertPresenter()
     private let showLohinFlowSegueIdentifier = "ShowLoginFlow"
     
-    let screenLogo: UIImageView = {
+    private let screenLogo: UIImageView = {
         let image = UIImage(named: "auth_screen_logo")
         let imageView = UIImageView(image: image)
         return imageView
@@ -49,7 +49,7 @@ class SplashViewController: UIViewController {
         ])
     }
     
-    func switchToTabBarController() {
+    private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration")}
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
@@ -93,12 +93,11 @@ extension SplashViewController: AuthViewControllerDelegate {
             switch result {
             case .success(_):
                 self.fetchProfile(completion: {
-                    UIBlockingProgressHUD.dismiss()
                 })
             case .failure(let error):
                 self.showLoginAlert(error: error)
-                UIBlockingProgressHUD.dismiss()
             }
+            UIBlockingProgressHUD.dismiss()
         }
     }
     
@@ -107,8 +106,9 @@ extension SplashViewController: AuthViewControllerDelegate {
             guard let self = self else { return }
             switch result{
             case .success(let userProfile):
-                self.profileImageService.fetchProfileImageURL(username: userProfile.username) { _ in }
-                self.switchToTabBarController()
+                self.profileImageService.fetchProfileImageURL(username: userProfile.username) { _ in
+                    self.switchToTabBarController()
+                }
             case .failure(let error):
                 self.showLoginAlert(error: error)
             }
@@ -116,7 +116,7 @@ extension SplashViewController: AuthViewControllerDelegate {
         }
     }
     
-    private func    showLoginAlert(error: Error) {
+    private func showLoginAlert(error: Error) {
         alertPresenter.showAlert(title: "Что-то пошло не так",
                                  message:"Не удалось войти в систему, \(error.localizedDescription)") {
             self.performSegue(withIdentifier: self.showLohinFlowSegueIdentifier, sender: nil)

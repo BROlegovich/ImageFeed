@@ -2,7 +2,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-class OAuth2TokenStorage {
+final class OAuth2TokenStorage {
     static var shared = OAuth2TokenStorage()
     private let keychainStorage = KeychainWrapper.standard
     

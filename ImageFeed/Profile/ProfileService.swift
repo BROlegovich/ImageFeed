@@ -42,7 +42,7 @@ final class ProfileService {
     private func fetchProfileRequest() -> URLRequest? {
         builder.makeHTTPRequest(path: "/me",
                                 httpMethod: "GET",
-                                baseURL: URL(string: "https://api.unsplash.com")!
+                                baseURL: DefaultBaseURL
         )
     }
 }

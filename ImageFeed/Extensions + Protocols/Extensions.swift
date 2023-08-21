@@ -14,9 +14,9 @@ final class URLRequestBuilder {
         path: String,
         httpMethod: String,
         baseURL: URL = DefaultBaseURL
-    ) -> URLRequest {
-        var url = URL(string: path, relativeTo: baseURL)
-        var request = URLRequest(url: url!)
+    ) -> URLRequest? {
+        guard let url = URL(string: path, relativeTo: baseURL) else { return nil }
+        var request = URLRequest(url: url)
         request.httpMethod = httpMethod
         
         if let token = storage.token {

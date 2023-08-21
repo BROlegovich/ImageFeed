@@ -6,15 +6,15 @@ final class ProfileViewController: UIViewController {
     
     private let profileImageService = ProfileImageService.shared
     private let profileService = ProfileService.shared
-    private var ProfileImageServiceObserver: NSObjectProtocol?
+    private var profileImageServiceObserver: NSObjectProtocol?
     
-    let profileImage: UIImageView = {
+    private let profileImage: UIImageView = {
         let image = UIImage(named: "avatar")
         let imageView = UIImageView(image: image)
         return imageView
     }()
     
-    var nameLabel:  UILabel = {
+    private var nameLabel:  UILabel = {
         let label = UILabel()
         label.text = "Екатерина Новикова"
         label.textColor = UIColor.ypWhite
@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
     
-    var loginLabel: UILabel = {
+    private var loginLabel: UILabel = {
         let loginLabel = UILabel()
         loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.ypGray
@@ -30,7 +30,7 @@ final class ProfileViewController: UIViewController {
         return loginLabel
     }()
     
-    var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = UIColor.ypWhite
@@ -38,7 +38,7 @@ final class ProfileViewController: UIViewController {
         return descriptionLabel
     }()
     
-    var logoutButton: UIButton = {
+    private var logoutButton: UIButton = {
         let logoutButton = UIButton.systemButton(with: UIImage(named: "logoutButton")!, target: ProfileViewController.self, action: #selector(clickLogoutButton(_:)))
         logoutButton.tintColor = UIColor.ypRed
         return logoutButton
@@ -107,7 +107,7 @@ final class ProfileViewController: UIViewController {
         updateAvatar()
         
         
-        ProfileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.didChangeNotification, object: nil, queue: .main) { [weak self ] notification in
+        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.didChangeNotification, object: nil, queue: .main) { [weak self ] notification in
             self?.updateAvatar()
         }
         updateAvatar()
