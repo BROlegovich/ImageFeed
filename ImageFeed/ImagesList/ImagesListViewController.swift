@@ -26,10 +26,11 @@ final class ImagesListViewController: UIViewController {
         if segue.identifier == ShowSingleImageSegueIdentifier {
             let viewController = segue.destination as! SingleImageViewController
             let indexPath = sender as! IndexPath
-            let imageName = photosName[indexPath.row]
-            let image = UIImage(named: "\(imageName)_full_size") ?? UIImage(named: imageName)
-            viewController.image = image
-        } else {
+            let photo = photos[indexPath.row]
+            guard let imageURL = URL(string: photo.largeImageURL) else { return }
+            viewController.singleImageURL = imageURL
+        }
+        else {
             super.prepare(for: segue, sender: sender)
         }
     }
@@ -83,7 +84,7 @@ extension ImagesListViewController {
             cell.dateLabel.text = ""
         }
         let isLiked = imagesListService.photos[indexPath.row].isLiked == false
-                let likeImage = isLiked ? UIImage(named: "likeButtonOn") : UIImage(named: "likeButtonOff")
+                let likeImage = isLiked ? UIImage(named: "likeButtonOff") : UIImage(named: "likeButtonOn")
                 cell.likeButton.setImage(likeImage, for: .normal)
                 cell.selectionStyle = .none
     }

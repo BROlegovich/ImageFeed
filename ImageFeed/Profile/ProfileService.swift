@@ -5,6 +5,7 @@ final class ProfileService {
     
     private let urlSession = URLSession.shared
     static let shared = ProfileService()
+    private let oAuth2TokenStorage = OAuth2TokenStorage.shared
     private var task: URLSessionTask?
     private(set) var profile: Profile?
     private let builder: URLRequestBuilder
@@ -44,5 +45,12 @@ final class ProfileService {
                                 httpMethod: "GET",
                                 baseURL: DefaultBaseURL
         )
+    }
+    
+    func cleanSession() {
+        task?.cancel()
+        self.task = nil
+        oAuth2TokenStorage.token = nil
+        profile = nil
     }
 }

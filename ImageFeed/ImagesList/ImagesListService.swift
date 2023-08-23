@@ -94,4 +94,9 @@ final class ImagesListService {
                                                  httpMethod: method,
                                                  baseURL: DefaultBaseURL)
     }
+    
+    func cleanSession() {
+        self.task = nil
+        photos = []
+    }
 }

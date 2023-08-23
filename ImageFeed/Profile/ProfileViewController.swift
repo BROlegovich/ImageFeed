@@ -1,6 +1,7 @@
 
 import UIKit
 import Kingfisher
+import WebKit
 
 final class ProfileViewController: UIViewController {
     
@@ -39,7 +40,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private var logoutButton: UIButton = {
-        let logoutButton = UIButton.systemButton(with: UIImage(named: "logoutButton")!, target: ProfileViewController.self, action: #selector(clickLogoutButton(_:)))
+        let logoutButton = UIButton.systemButton(with: UIImage(named: "logoutButton")!, target: self, action: #selector(Self.didTapButton))
         logoutButton.tintColor = UIColor.ypRed
         return logoutButton
     }()
@@ -66,8 +67,10 @@ final class ProfileViewController: UIViewController {
     }
     
     
-    @IBAction private func clickLogoutButton(_ sender: UIButton) {
+    @objc private func didTapButton(){
+        showAlert()
     }
+
     
     private func layout() {
         var subviews = [profileImage, nameLabel, loginLabel, descriptionLabel, logoutButton]
@@ -92,6 +95,47 @@ final class ProfileViewController: UIViewController {
             logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:  -16),
         ])
+    }
+    
+    static func cleanSession() {
+       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+          records.forEach { record in
+             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+          }
+       }
+    }
+    
+    private func cleanAllService() {
+        ProfileService.shared.cleanSession()
+        ProfileImageService.shared.cleanSession()
+        ImagesListService.shared.cleanSession()
+        ProfileViewController.cleanSession()
+    }
+
+    private func switchToSplashViewController() {
+        guard let window = UIApplication.shared.windows.first else {
+            assertionFailure("Invalid Configuration")
+            return
+        }
+        window.rootViewController = SplashViewController()
+    }
+    
+    private func showAlert() {
+        let alertController = UIAlertController(title: "Выход",
+                                                message: "Вы уверены что хотите выйти?",
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] action in
+            guard let self = self else {return}
+            self.logOut()
+        }))
+        alertController.addAction(UIAlertAction(title: "Нет", style: .default))
+        present(alertController, animated: true)
+    }
+    
+    private func logOut() {
+        cleanAllService()
+        switchToSplashViewController()
     }
     
     override func viewDidAppear(_ animated: Bool) {
