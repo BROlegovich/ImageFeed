@@ -69,3 +69,11 @@ extension Notification {
         userInfo?[Notification.userInfoImageURLKey] as? String
     }
 }
+
+extension Array {
+    func withReplaced(itemAt: Int, newValue: Photo) -> [Photo] {
+        var photos = ImagesListService.shared.photos
+        photos.replaceSubrange(itemAt...itemAt, with: [newValue])
+        return photos
+    }
+}
