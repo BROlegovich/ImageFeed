@@ -64,6 +64,9 @@ struct UrlsResult: Decodable {
     }
 }
 
+struct IsLiked: Decodable {
+    let photo: PhotoResult?
+}
 
 public struct Profile {
     let username: String
