@@ -6,7 +6,6 @@ final class SplashViewController: UIViewController {
     private let profileImageService = ProfileImageService.shared
     private let profileService = ProfileService.shared
     private let oauth2Service = OAuth2Service.shared
-    private let oauth2TokenStorage = OAuth2TokenStorage.shared
     private let alertPresenter = AlertPresenter()
     private let showLohinFlowSegueIdentifier = "ShowLoginFlow"
     

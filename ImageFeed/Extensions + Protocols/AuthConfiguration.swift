@@ -21,7 +21,7 @@ struct AuthConfiguration {
     static var standart: AuthConfiguration {
         return AuthConfiguration(accessKey: AccessKey, secretKey: SecretKey, redirectURI: RedirectURI, accessScope: AccessKey, baseURL: BaseURL, defaultBaseURL: DefaultBaseURL, unsplashAuthorizeURLString: UnsplashAuthorizeURLString)
     }
-
+    
     
     init(accessKey: String, secretKey: String, redirectURI: String, accessScope: String, baseURL: String, defaultBaseURL: URL, unsplashAuthorizeURLString: String) {
         self.accessKey = accessKey

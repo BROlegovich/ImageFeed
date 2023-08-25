@@ -19,9 +19,9 @@ final class ImagesListCell: UITableViewCell {
     }
     
     public override func prepareForReuse() {
-         super.prepareForReuse()
+        super.prepareForReuse()
         cellImage.kf.cancelDownloadTask()
-     }
+    }
     
     func setIsLiked(isLiked: Bool) {
         let likeImage = isLiked ? UIImage(named: "likeButtonOn") : UIImage(named: "likeButtonOff")

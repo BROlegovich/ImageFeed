@@ -45,7 +45,7 @@ final class ProfilePresenter: ProfilePresenterProtocol{
         }
     }
     
-     func cleanAllService() {
+    func cleanAllService() {
         ProfileService.shared.cleanSession()
         ProfileImageService.shared.cleanSession()
         ImagesListService.shared.cleanSession()
@@ -55,7 +55,7 @@ final class ProfilePresenter: ProfilePresenterProtocol{
     
     func switchToSplashViewController() {
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
-                    .instantiateViewController(withIdentifier: "TabBarViewController")
+            .instantiateViewController(withIdentifier: "TabBarViewController")
         tabBarController.dismiss(animated: true)
         guard let window = UIApplication.shared.windows.first else {
             assertionFailure("Invalid Configuration")
@@ -70,15 +70,15 @@ final class ProfilePresenter: ProfilePresenterProtocol{
     }
     
     func showAlert() -> UIAlertController {
-       let alertController = UIAlertController(title: "Выход",
-                                               message: "Вы уверены что хотите выйти?",
-                                               preferredStyle: .alert)
-       alertController.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] action in
-           guard let self = self else { return }
-           self.logOut()
-       }))
-       alertController.addAction(UIAlertAction(title: "Нет", style: .default))
+        let alertController = UIAlertController(title: "Выход",
+                                                message: "Вы уверены что хотите выйти?",
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] action in
+            guard let self = self else { return }
+            self.logOut()
+        }))
+        alertController.addAction(UIAlertAction(title: "Нет", style: .default))
         alertController.dismiss(animated: true)
         return alertController
-   }
+    }
 }

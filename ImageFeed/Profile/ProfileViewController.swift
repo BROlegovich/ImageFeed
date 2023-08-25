@@ -15,11 +15,9 @@ protocol ProfileViewControllerProtocol: AnyObject {
 }
 
 final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
-
-
-    private let profileImageService = ProfileImageService.shared
-    private let profileService = ProfileService.shared
     
+    
+    private let profileImageService = ProfileImageService.shared
     
     lazy var presenter: ProfilePresenterProtocol = {
         return ProfilePresenter()
@@ -62,11 +60,11 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     }()
     
     func configure(_ presenter: ProfilePresenterProtocol) {
-             self.presenter = presenter
+        self.presenter = presenter
         self.presenter.view = self
-         }
-
-     func updateAvatar() {
+    }
+    
+    func updateAvatar() {
         guard
             let profileImageURL = profileImageService.avatarURL,
             let url = URL(string: profileImageURL)
@@ -80,9 +78,9 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
     @objc private func didTapButton(){
         showAlert()
     }
-
     
-     func layout() {
+    
+    func layout() {
         var subviews = [profileImage, nameLabel, loginLabel, descriptionLabel, logoutButton]
         for subview in subviews {
             subview.translatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +104,7 @@ final class ProfileViewController: UIViewController, ProfileViewControllerProtoc
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:  -16),
         ])
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presenter.view = self

@@ -23,28 +23,27 @@ final class ImagesListService {
         
         guard let request = fetchImageListRequest(page: String(nextPage), perPage: perPage) else { return }
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) in
-                guard let self = self else { return }
-                self.task = nil
-                switch result {
-                case .success(let photoResults):
-                    photoResults.forEach { image in
-                        let date = self.dateFormater.date(from: image.createdAt ?? "")
-                        guard let thumbImage = image.urls?.thumbImageURL,
-                              let fullImage = image.urls?.largeImageURL else { return }
-                        self.photos.append(Photo(id: image.id,
-                                                 size: CGSize(width: image.width ?? 0, height: image.height ?? 0),
-                                                 createdAt: date,
-                                                 welcomeDescription: image.welcomeDescription,
-                                                 thumbImageURL: thumbImage,
-                                                 largeImageURL: fullImage,
-                                                 isLiked: image.isLiked ?? false))
-                    }
-                    NotificationCenter.default.post(name: ImagesListService.didChangeNotification,
-                                                    object: self,
-                                                    userInfo: ["Images": self.photos])
-                    self.lastLoadedPage = nextPage
-                case .failure(let error):
-                    assertionFailure("Не удалось получить изображение \(error)")
+            guard let self = self else { return }
+            self.task = nil
+            switch result {
+            case .success(let photoResults):
+                photoResults.forEach { image in
+                    let date = self.dateFormater.date(from: image.createdAt ?? "")
+                    guard let thumbImage = image.urls?.thumbImageURL,
+                          let fullImage = image.urls?.largeImageURL else { return }
+                    self.photos.append(Photo(id: image.id,
+                                             size: CGSize(width: image.width ?? 0, height: image.height ?? 0),
+                                             createdAt: date,
+                                             welcomeDescription: image.welcomeDescription,
+                                             thumbImageURL: thumbImage,
+                                             largeImageURL: fullImage,
+                                             isLiked: image.isLiked ?? false))
+                }
+                self.lastLoadedPage = nextPage
+                NotificationCenter.default.post(name: ImagesListService.didChangeNotification,
+                                                object: self,
+                                                userInfo: ["Images": self.photos])            case .failure(let error):
+                assertionFailure("Не удалось получить изображение \(error)")
             }
         }
         self.task = task
@@ -91,8 +90,8 @@ final class ImagesListService {
     
     private func makeLikeRequest(photoId: String, method: String) -> URLRequest? {
         builder.makeHTTPRequest(path: "photos/\(photoId)/like",
-                                                 httpMethod: method,
-                                                 baseURL: DefaultBaseURL)
+                                httpMethod: method,
+                                baseURL: DefaultBaseURL)
     }
     
     func cleanSession() {

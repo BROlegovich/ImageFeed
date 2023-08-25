@@ -66,6 +66,7 @@ extension ImagesListViewController {
             cell.dateLabel.text = ""
         }
         let isLiked = presenter?.isLiked(indexPath: indexPath)
+        cell.likeButton.accessibilityIdentifier = "likeButton"
         let likeImage = isLiked ?? true ? UIImage(named: "likeButtonOff") : UIImage(named: "likeButtonOn")
         cell.likeButton.setImage(likeImage, for: .normal)
         cell.selectionStyle = .none

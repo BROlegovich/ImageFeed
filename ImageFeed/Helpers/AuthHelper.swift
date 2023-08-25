@@ -7,7 +7,7 @@ protocol AuthHelperProtocol {
 }
 
 class AuthHelper: AuthHelperProtocol {
-
+    
     let configuration: AuthConfiguration
     
     init(configuration: AuthConfiguration = .standart) {
@@ -18,7 +18,7 @@ class AuthHelper: AuthHelperProtocol {
         let url = authURL()
         return URLRequest(url: url)
     }
-
+    
     func authURL() -> URL {
         var urlComponents = URLComponents(string: UnsplashAuthorizeURLString)!
         urlComponents.queryItems = [

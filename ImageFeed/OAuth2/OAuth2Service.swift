@@ -5,7 +5,7 @@ final class OAuth2Service {
     
     static let shared = OAuth2Service()
     
-    private let urlSession = URLSession.shared
+    //private let urlSession = URLSession.shared
     private var task: URLSessionTask?
     private let tokenStorage = OAuth2TokenStorage.shared
     private var lastCode: String?
@@ -61,7 +61,7 @@ final class OAuth2Service {
     }
     
     private func authTokenRequest(code: String) -> URLRequest? {
-    builder.makeHTTPRequest(
+        builder.makeHTTPRequest(
             path: "/oauth/token"
             + "?client_id=\(AccessKey)"
             + "&&client_secret=\(SecretKey)"

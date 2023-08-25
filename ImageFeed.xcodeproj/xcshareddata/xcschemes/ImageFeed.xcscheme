@@ -33,7 +33,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30CDB7162A93C6E1002833D6"
+               BlueprintIdentifier = "30C1A0C42A97F8F40028CDAF"
                BuildableName = "ImageFeedTests.xctest"
                BlueprintName = "ImageFeedTests"
                ReferencedContainer = "container:ImageFeed.xcodeproj">
@@ -47,6 +47,17 @@
                BlueprintIdentifier = "30426AA12A93CA0600E5F6DB"
                BuildableName = "ImageFeedTest.xctest"
                BlueprintName = "ImageFeedTest"
+               ReferencedContainer = "container:ImageFeed.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3044F0472A99196B00E4C4F2"
+               BuildableName = "ImageFeedUITests.xctest"
+               BlueprintName = "ImageFeedUITests"
                ReferencedContainer = "container:ImageFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>

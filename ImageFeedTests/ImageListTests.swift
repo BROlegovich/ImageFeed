@@ -43,5 +43,5 @@ final class ImagesListTests: XCTestCase {
         //then
         XCTAssertTrue(presenter.isLiked(indexPath: IndexPath()))
     }
-
+    
 }
