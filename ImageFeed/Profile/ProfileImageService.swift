@@ -44,4 +44,10 @@ final class ProfileImageService {
                                 baseURL: DefaultBaseURL
         )
     }
+    
+    func cleanSession() {
+        task?.cancel()
+        self.task = nil
+        avatarURL = nil
+    }
 }
