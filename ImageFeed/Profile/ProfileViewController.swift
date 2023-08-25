@@ -3,19 +3,35 @@ import UIKit
 import Kingfisher
 import WebKit
 
-final class ProfileViewController: UIViewController {
-    
+protocol ProfileViewControllerProtocol: AnyObject {
+    var presenter: ProfilePresenterProtocol { get set }
+    var profileImage: UIImageView { get set }
+    var nameLabel: UILabel { get set }
+    var loginLabel: UILabel { get set }
+    var descriptionLabel: UILabel { get set }
+    func updateAvatar()
+    func layout()
+    func showAlert()
+}
+
+final class ProfileViewController: UIViewController, ProfileViewControllerProtocol {
+
+
     private let profileImageService = ProfileImageService.shared
     private let profileService = ProfileService.shared
-    private var profileImageServiceObserver: NSObjectProtocol?
     
-    private let profileImage: UIImageView = {
+    
+    lazy var presenter: ProfilePresenterProtocol = {
+        return ProfilePresenter()
+    }()
+    
+    lazy var profileImage: UIImageView = {
         let image = UIImage(named: "avatar")
         let imageView = UIImageView(image: image)
         return imageView
     }()
     
-    private var nameLabel:  UILabel = {
+    lazy var nameLabel:  UILabel = {
         let label = UILabel()
         label.text = "Екатерина Новикова"
         label.textColor = UIColor.ypWhite
@@ -23,7 +39,7 @@ final class ProfileViewController: UIViewController {
         return label
     }()
     
-    private var loginLabel: UILabel = {
+    lazy var loginLabel: UILabel = {
         let loginLabel = UILabel()
         loginLabel.text = "@ekaterina_nov"
         loginLabel.textColor = UIColor.ypGray
@@ -31,7 +47,7 @@ final class ProfileViewController: UIViewController {
         return loginLabel
     }()
     
-    private var descriptionLabel: UILabel = {
+    lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Hello, world!"
         descriptionLabel.textColor = UIColor.ypWhite
@@ -45,18 +61,12 @@ final class ProfileViewController: UIViewController {
         return logoutButton
     }()
     
-    private func updateProfile() {
-        guard let profile = profileService.profile else {
-            assertionFailure("Profile didn't found")
-            return
-        }
-        
-        nameLabel.text = profile.username
-        loginLabel.text = profile.loginName
-        descriptionLabel.text = profile.bio
-    }
-    
-    private func updateAvatar() {
+    func configure(_ presenter: ProfilePresenterProtocol) {
+             self.presenter = presenter
+        self.presenter.view = self
+         }
+
+     func updateAvatar() {
         guard
             let profileImageURL = profileImageService.avatarURL,
             let url = URL(string: profileImageURL)
@@ -72,7 +82,7 @@ final class ProfileViewController: UIViewController {
     }
 
     
-    private func layout() {
+     func layout() {
         var subviews = [profileImage, nameLabel, loginLabel, descriptionLabel, logoutButton]
         for subview in subviews {
             subview.translatesAutoresizingMaskIntoConstraints = false
@@ -96,64 +106,27 @@ final class ProfileViewController: UIViewController {
             logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant:  -16),
         ])
     }
-    
-    static func cleanSession() {
-       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-          records.forEach { record in
-             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-          }
-       }
-    }
-    
-    private func cleanAllService() {
-        ProfileService.shared.cleanSession()
-        ProfileImageService.shared.cleanSession()
-        ImagesListService.shared.cleanSession()
-        ProfileViewController.cleanSession()
-    }
 
-    private func switchToSplashViewController() {
-        guard let window = UIApplication.shared.windows.first else {
-            assertionFailure("Invalid Configuration")
-            return
-        }
-        window.rootViewController = SplashViewController()
-    }
-    
-    private func showAlert() {
-        let alertController = UIAlertController(title: "Выход",
-                                                message: "Вы уверены что хотите выйти?",
-                                                preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Да", style: .default, handler: { [weak self] action in
-            guard let self = self else {return}
-            self.logOut()
-        }))
-        alertController.addAction(UIAlertAction(title: "Нет", style: .default))
-        present(alertController, animated: true)
-    }
-    
-    private func logOut() {
-        cleanAllService()
-        switchToSplashViewController()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateProfile()
+        presenter.view = self
+        presenter.viewDidLoad()
         updateAvatar()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        updateProfile()
+        presenter.view = self
+        presenter.viewDidLoad()
         updateAvatar()
-        
-        
-        profileImageServiceObserver = NotificationCenter.default.addObserver(forName: ProfileImageService.didChangeNotification, object: nil, queue: .main) { [weak self ] notification in
-            self?.updateAvatar()
-        }
-        updateAvatar()
+    }
+}
+
+extension ProfileViewController {
+    
+    func showAlert() {
+        let alert = presenter.showAlert()
+        present(alert, animated: true, completion: nil)
     }
 }

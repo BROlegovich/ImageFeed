@@ -31,12 +31,7 @@ final class WebViewViewController: UIViewController & WebViewViewControllerProto
             self.presenter?.didUpdateProgressValue(self.webView.estimatedProgress)
         })
     }
-    
-//    private func updateProgress() {
-//        progressView.progress = Float(webView.estimatedProgress)
-//        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
-//    }
-    
+
     func setProgressValue(_ newValue: Float) {
         progressView.progress = newValue
     }
@@ -68,5 +63,14 @@ extension WebViewViewController: WKNavigationDelegate {
             return presenter?.code(from: url)
         }
         return nil
+    }
+    
+    static func clean() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+            }
+        }
     }
 }
